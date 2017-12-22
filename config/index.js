@@ -39,7 +39,7 @@ module.exports = {
     cssSourceMap: false,
     proxyTable: {
       '/api':{
-        target:"http://127.0.0.1:3000/",
+        target:"http://127.0.0.1:8360/",
         //设置你调用的接口域名和端口号 别忘了加http
         changeOrigin:true,
         // pathRewrite:{

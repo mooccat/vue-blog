@@ -1,6 +1,13 @@
 <template>
     <div>
-        {{articleList}}
+        <div v-for="(article,index) in articleList" :key="article._id">
+          <article>
+            <h2>{{article.title}}</h2>
+            <section v-html="article.html">
+              
+            </section>
+          </article>
+        </div>
     </div>
 </template>
 
