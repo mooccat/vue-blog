@@ -1,21 +1,23 @@
 <template>
   <div>
-    <div class="widget">
-      <div class="title">
-        <h4>标签</h4>
+    <el-card class="tag_panel">
+      <div slot="header" class="clearfix">
+        <span>标签</span>
       </div>
       <div class="content">
-        <div v-for="(tag,index) in tagList" :key="tag._id">
-          <a v-if="index%7==1" class="float-left mb-3 mr-3 badge badge-primary">{{tag.name}}</a>
-          <a v-if="index%7==2" class="float-left mb-3 mr-3 badge badge-secondary">{{tag.name}}</a>
-          <a v-if="index%7==3" class="float-left mb-3 mr-3 badge badge-success">{{tag.name}}</a>
-          <a v-if="index%7==4" class="float-left mb-3 mr-3 badge badge-danger">{{tag.name}}</a>
-          <a v-if="index%7==5" class="float-left mb-3 mr-3 badge badge-warning">{{tag.name}}</a>
-          <a v-if="index%7==6" class="float-left mb-3 mr-3 badge badge-info">{{tag.name}}</a>
-          <a v-if="index%7==0" class="float-left mb-3 mr-3 badge badge-light">{{tag.name}}</a>
-        </div>
+        <span class="tag">
+          <router-link :to="{name:'blog'}">
+            <el-tag :type="type[4]">全部</el-tag>
+          </router-link>
+        </span>
+        <span v-for="(tag,index) in tagList" :key="tag._id" class="tag">
+          <a :href="'#/blog/tag/'+tag._id">
+            <el-tag :type="type[index%5]">{{tag.name}}</el-tag>
+          </a>
+        </span>
       </div>
-    </div>
+    </el-card>
+
   </div>
 </template>
 
@@ -25,13 +27,24 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "TagList",
   data() {
-    return {};
+    return {
+      type: ["", "success", "info", "waring", "danger"]
+    };
   },
   computed: {
     ...mapGetters(["tagList"])
   },
   methods: {
-    ...mapActions(["getTagList"])
+    ...mapActions(["getTagList", "getArticleList"]),
+    getTag(tag) {
+      if (tag) {
+        this.getArticleList({ tag: tag._id });
+        window.location.hash = "#blog?tag=" + tag._id;
+      } else {
+        this.getArticleList();
+        window.location.hash = "#blog";
+      }
+    }
   },
   created() {
     this.getTagList();
@@ -40,6 +53,11 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
+<style lang="scss">
+.tag_panel {
+  text-align: left;
+  .tag {
+    margin-right: 5px;
+  }
+}
 </style>

@@ -1,21 +1,23 @@
 <template>
   <div>
-    <div class="widget">
-      <div class="title">
-        <h4>分类</h4>
+    <el-card class="sort_panel">
+      <div slot="header" class="clearfix">
+        <span>分类</span>
       </div>
       <div class="content">
-        <div v-for="(sort,index) in sortList" :key="sort._id">
-          <a :href="'#article/'+ sort._id" v-if="index%7==1" class="float-left mb-3 mr-3 badge badge-primary">{{sort.name}}</a>
-          <a v-if="index%7==2" class="float-left mb-3 mr-3 badge badge-secondary">{{sort.name}}</a>
-          <a v-if="index%7==3" class="float-left mb-3 mr-3 badge badge-success">{{sort.name}}</a>
-          <a v-if="index%7==4" class="float-left mb-3 mr-3 badge badge-danger">{{sort.name}}</a>
-          <a v-if="index%7==5" class="float-left mb-3 mr-3 badge badge-warning">{{sort.name}}</a>
-          <a v-if="index%7==6" class="float-left mb-3 mr-3 badge badge-info">{{sort.name}}</a>
-          <a v-if="index%7==0" class="float-left mb-3 mr-3 badge badge-light">{{sort.name}}</a>
-        </div>
+        <span class="sort">
+          <router-link :to="{name:'blog'}">
+            <el-tag :type="type[4]">全部</el-tag>
+          </router-link>
+        </span>
+        <span v-for="(sort,index) in sortList" :key="sort._id" class="sort">
+          <a :href="'#/blog/sort/'+sort._id">
+            <el-tag :type="type[index%5]">{{sort.name}}</el-tag>
+          </a>
+        </span>
       </div>
-    </div>
+    </el-card>
+
   </div>
 </template>
 
@@ -25,13 +27,15 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "SortList",
   data() {
-    return {};
+    return {
+      type: ["", "success", "info", "waring", "danger"]
+    };
   },
   computed: {
     ...mapGetters(["sortList"])
   },
   methods: {
-    ...mapActions(["getSortList"])
+    ...mapActions(["getSortList", "getArticleList"]),
   },
   created() {
     this.getSortList();
@@ -40,6 +44,11 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
+<style lang="scss">
+.sort_panel {
+  text-align: left;
+  .sort {
+    margin-right: 5px;
+  }
+}
 </style>

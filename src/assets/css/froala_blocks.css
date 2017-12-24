@@ -205,7 +205,7 @@ footer {
     color: #444444; }
 
 header {
-  background-color: #FFFFFF; }
+  background-color:none; }
   header .navbar-nav a.nav-link {
     color: #777; }
     header .navbar-nav a.nav-link:hover {

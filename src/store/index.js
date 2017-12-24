@@ -7,7 +7,10 @@ import sort from './modules/sort'
 import tag from './modules/tag'
 import createLogger from 'vuex/dist/logger'
 
+import {timeToNow} from '../filter'
+
 Vue.use(Vuex)
+Vue.filter('timeToNow',timeToNow)
 
 const debug = process.env.NODE_ENV !== 'production'
 
