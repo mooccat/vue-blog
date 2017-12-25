@@ -57,7 +57,9 @@ export default {
 .tag_panel {
   text-align: left;
   .tag {
+    display: inline-block;
     margin-right: 5px;
+    margin-bottom: 5px;
   }
 }
 </style>

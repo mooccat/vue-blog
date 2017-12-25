@@ -48,7 +48,9 @@ export default {
 .sort_panel {
   text-align: left;
   .sort {
+    display: inline-block;
     margin-right: 5px;
+    margin-bottom: 5px;
   }
 }
 </style>
