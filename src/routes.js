@@ -17,7 +17,7 @@ let routes = [
             name: 'sort',
             component: Blog,
         },{
-            path: '/blog/tag/:tag',
+            path: '/blog/tag/:tags',
             name: 'tag',
             component: Blog,
         },{
