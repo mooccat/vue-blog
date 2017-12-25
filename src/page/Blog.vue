@@ -1,13 +1,13 @@
 <template>
-    <el-row :gutter="20" style="margin-top:20px;">
-        <el-col :xs="24" :md="16">
-            <article-list></article-list>
-        </el-col>
-        <el-col :xs="24" :md="8">
-            <sort></sort>
-            <tag style="margin-top:20px;"></tag>
-        </el-col>
-    </el-row>
+  <el-row :gutter="20" style="margin-top:20px;">
+    <el-col :xs="24" :md="16">
+      <article-list></article-list>
+    </el-col>
+    <el-col :xs="24" :md="8">
+      <sort></sort>
+      <tag style="margin-top:20px;"></tag>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -27,6 +27,14 @@ export default {
     Sort,
     Tag
   },
+  watch: {
+    "$route.params.tags": function(tags) {
+      this.getArticleList({tags:tags});
+    },
+    "$route.params.sort": function(sort) {
+      this.getArticleList({sort:sort});
+    }
+  },
   methods: {
     ...mapActions(["getArticleList"])
   },
@@ -35,9 +43,9 @@ export default {
       vm.getArticleList(to.params);
     });
   },
-  beforeRouteUpdate(to, from, next) {
-      this.getArticleList(to.params);
-  },
+  // beforeRouteUpdate(to, from, next) {
+  //   this.getArticleList(to.params);
+  // }
 };
 </script>
 
