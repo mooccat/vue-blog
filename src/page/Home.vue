@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="main-header" style="background-image: url(http://static.ghostchina.com/image/6/d1/fcb3879e14429d75833a461572e64.jpg)">
+    <header class="main-header" style="background-image: url(http://ockct9nyz.bkt.clouddn.com/image/jpg/banner1.jpg);background-position: center">
     </header>
     <sticky>
           <navbar></navbar>
